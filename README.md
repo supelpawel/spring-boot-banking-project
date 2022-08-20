@@ -16,4 +16,5 @@ Project is created with:
 * MySQL
 * BCrypt
 * JSTL
+* Jackson
 * Lombok
