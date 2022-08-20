@@ -3,7 +3,7 @@
 * [Technologies](#technologies)
 
 ## General info
-The banking program allows to manage bank accounts, including making deposits and transfers in different currencies available in the National Bank of Poland.
+The program allows to manage bank accounts, including making deposits and transfers in different currencies available in the National Bank of Poland.
 
 Current exchange rates are downloaded from the endpoint of the bank.
 	
