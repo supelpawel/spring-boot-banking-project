@@ -1,7 +1,3 @@
-## Table of content
-* [General info](#general-info)
-* [Technologies](#technologies)
-
 ## General info
 The program allows to manage bank accounts, including making deposits and transfers in different currencies available in the National Bank of Poland.
 
