@@ -15,7 +15,8 @@ import pl.coderslab.service.RoleService;
 import pl.coderslab.service.UserService;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
