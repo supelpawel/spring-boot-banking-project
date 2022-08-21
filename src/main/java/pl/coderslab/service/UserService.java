@@ -11,11 +11,11 @@ public interface UserService {
 
     void save(User user);
 
-    void hashPasswordAndUpdate(User user);
-
     Optional<User> findById(Long id);
 
     List<User> findAll();
 
     void update(User user);
+
+    void saveAdmin(User user);
 }

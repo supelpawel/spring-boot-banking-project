@@ -39,7 +39,6 @@ public class DepositController {
     String processMakeDepositForm(@Valid Deposit deposit, BindingResult result,
                                   @PathVariable (name = "id") String accountId) {
 
-        LocalDateTime depositDate = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
         Optional<Account> optAccount = accountService.findById(Long.valueOf(accountId));
 
         if (result.hasErrors() || !optAccount.isPresent()) {
@@ -48,8 +47,6 @@ public class DepositController {
         }
 
         Account account = optAccount.get();
-
-        deposit.setDepositDate(depositDate);
         deposit.setAccount(account);
 
         BigDecimal currentAmount = account.getBalance();
@@ -57,6 +54,9 @@ public class DepositController {
         BigDecimal resultBalance = currentAmount.add(depositAmount);
 
         account.setBalance(resultBalance);
+
+        LocalDateTime depositDate = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
+        deposit.setDepositDate(depositDate);
 
         depositService.save(deposit);
         accountService.update(account);

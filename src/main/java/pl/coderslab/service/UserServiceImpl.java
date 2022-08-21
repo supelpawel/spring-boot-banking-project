@@ -3,10 +3,14 @@ package pl.coderslab.service;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.entity.Role;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.RoleRepository;
 import pl.coderslab.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +19,10 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-        @Override
+    @Override
     public User findByUserName(String username) {
         return userRepository.findByUsername(username);
     }
@@ -27,14 +32,10 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }
+        user.setEnabled(true);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 
-    @Override
-    @Transactional
-    public void hashPasswordAndUpdate(User user) {
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -51,6 +52,22 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void saveAdmin(User user) {
+
+        user.setUsername("admin1");
+        user.setPassword("admin1");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setAge(18);
+        user.setPesel("88072808939");
+        user.setEnabled(true);
+        Role userRole = roleRepository.findByName("ROLE_ADMIN");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+
         userRepository.save(user);
     }
 }

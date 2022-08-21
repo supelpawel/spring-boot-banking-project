@@ -14,7 +14,7 @@ import java.util.Random;
 @AllArgsConstructor
 public class AccountService {
 
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     public String getNewAccountNumber() {
 

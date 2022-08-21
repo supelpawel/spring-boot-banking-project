@@ -23,8 +23,6 @@
         <span>Age: <form:input path="age"/></span><form:errors path="age" cssClass="error"/>
         <span>PESEL: <form:input path="pesel"/></span><form:errors path="pesel" cssClass="error"/>
         <span>Password: <form:password path="password"/></span><form:errors path="password" cssClass="error"/>
-        <span>Enabled: <form:checkbox path="enabled"/></span><form:errors path="enabled" cssClass="error"/>
-        <span>Roles: <form:select path="roles" multiple="true" items="${roles}" itemLabel="name"/></span><form:errors path="roles" cssClass="error"/>
     </div>
     <input type="submit" value="Add user">
 </form:form>

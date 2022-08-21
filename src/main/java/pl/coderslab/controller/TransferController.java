@@ -10,14 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.entity.Account;
 import pl.coderslab.entity.Transfer;
 import pl.coderslab.entity.User;
-import pl.coderslab.service.AccountService;
 import pl.coderslab.service.CurrentUser;
 import pl.coderslab.service.TransferService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 @Controller
@@ -25,7 +22,6 @@ import java.util.List;
 public class TransferController {
 
     private final TransferService transferService;
-    private final AccountService accountService;
 
     @GetMapping("/transfer/make")
     String showMakeTransferForm(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
@@ -51,26 +47,7 @@ public class TransferController {
             return "redirect:/transfer/make";
         }
 
-        Account fromAccount = transfer.getFromAccount();
-        Account toAccount = transfer.getToAccount();
-
-        LocalDateTime transferDate = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
-
-        transfer.setTransferDate(transferDate);
-
-        String fromCurrency = fromAccount.getCurrency();
-        String toCurrency = toAccount.getCurrency();
-
-        BigDecimal originalAmount = transfer.getOriginalAmount();
-        BigDecimal finalAmount = transferService.calculateFinalAmount(originalAmount, fromCurrency, toCurrency);
-
-        transfer.setFinalAmount(finalAmount);
-        transferService.save(transfer);
-
-        fromAccount.setBalance(fromAccount.getBalance().subtract(originalAmount));
-        toAccount.setBalance(toAccount.getBalance().add(finalAmount));
-        accountService.update(fromAccount);
-        accountService.update(toAccount);
+        transferService.processMakeTransferForm(transfer);
 
         return "redirect:/account/list";
     }

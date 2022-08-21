@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +15,11 @@ import pl.coderslab.service.RoleService;
 import pl.coderslab.service.UserService;
 
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -38,6 +39,18 @@ public class UserController {
         return "user/add";
     }
 
+    @GetMapping("/create-admin")
+    public String createAdmin() {
+
+        User user = new User();
+
+        userService.saveAdmin(user);
+
+        log.info("admin created");
+
+        return "redirect:/login";
+    }
+
     @PostMapping("/user/add")
     String processAddUserForm(@Valid User user, BindingResult result) {
 
@@ -46,6 +59,7 @@ public class UserController {
         }
 
         userService.save(user);
+
         return "redirect:/user/list";
     }
 
@@ -74,7 +88,9 @@ public class UserController {
             return "user/edit";
         }
 
-        userService.hashPasswordAndUpdate(user);
+        userService.save(user);
+
+//        userService.hashPasswordAndUpdate(user);
 
         return "redirect:/user/list";
     }

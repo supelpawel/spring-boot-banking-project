@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @AllArgsConstructor
 public class DepositService {
 
-    DepositRepository depositRepository;
+    private final DepositRepository depositRepository;
 
     @Transactional
     public void save(Deposit deposit) {
