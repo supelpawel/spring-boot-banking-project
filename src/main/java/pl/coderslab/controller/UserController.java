@@ -90,8 +90,6 @@ public class UserController {
 
         userService.save(user);
 
-//        userService.hashPasswordAndUpdate(user);
-
         return "redirect:/user/list";
     }
 }
