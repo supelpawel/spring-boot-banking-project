@@ -5,11 +5,11 @@
 </head>
 <body>
 <h1>Welcome to your bank</h1>
-</body>
 <p>
     <a href="/login">Login</a>
 </p>
 <p>
     <a href="/user/add">Register</a>
 </p>
+</body>
 </html>

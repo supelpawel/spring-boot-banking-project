@@ -6,7 +6,7 @@
 <body>
 
 <p>
-    You do not have the access to this page.
+<h1>You do not have the access to this page.</h1>
 </p>
 
 <p>
