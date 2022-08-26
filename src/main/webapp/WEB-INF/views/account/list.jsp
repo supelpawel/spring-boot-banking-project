@@ -37,14 +37,18 @@
     </c:forEach>
 </table>
 <p>
-    <a href="/transfer/make">Make a new transfer</a>
-</p>
-
-<p>
     <a href="/account/add">Add a new account</a>
 </p>
 <p>
-    <a href="/user/list">User list</a>
+    <a href="/transfer/make">Make a new transfer</a>
 </p>
+<sec:authorize access="hasRole('ADMIN')">
+    <p>
+        <a href="/user/list">User list</a>
+    </p>
+    <p>
+        <a href="/transfer/history">Transfer history</a>
+    </p>
+</sec:authorize>
 </body>
 </html>

@@ -9,7 +9,9 @@ public interface UserService {
 
     User findByUserName(String username);
 
-    void save(User user);
+    void saveUser(User user);
+
+    void saveAdmin(User user);
 
     Optional<User> findById(Long id);
 
@@ -17,5 +19,5 @@ public interface UserService {
 
     void update(User user);
 
-    void saveAdmin(User user);
+    int calculateAgeFromPesel(String pesel);
 }

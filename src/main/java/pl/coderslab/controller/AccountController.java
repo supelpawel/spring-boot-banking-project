@@ -12,8 +12,8 @@ import pl.coderslab.entity.Account;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.AccountService;
 import pl.coderslab.service.CurrentUser;
-import pl.coderslab.service.ExchangeRateServiceImpl;
-import pl.coderslab.service.UserServiceImpl;
+import pl.coderslab.service.ExchangeRateService;
+import pl.coderslab.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,8 +23,8 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService accountService;
-    private final UserServiceImpl userService;
-    private final ExchangeRateServiceImpl exchangeRateService;
+    private final UserService userService;
+    private final ExchangeRateService exchangeRateService;
 
     @ModelAttribute("currencyList")
     List<String> currencyList() {

@@ -27,10 +27,6 @@ public class TransferService {
         Account fromAccount = transfer.getFromAccount();
         Account toAccount = transfer.getToAccount();
 
-        LocalDateTime transferDate = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
-
-        transfer.setTransferDate(transferDate);
-
         String fromCurrency = fromAccount.getCurrency();
         String toCurrency = toAccount.getCurrency();
 
@@ -43,6 +39,9 @@ public class TransferService {
         fromAccount.setBalance(fromAccount.getBalance().subtract(originalAmount));
         toAccount.setBalance(toAccount.getBalance().add(finalAmount));
 
+        LocalDateTime transferDate = LocalDateTime.now(ZoneId.of("Europe/Warsaw"));
+        transfer.setTransferDate(transferDate);
+
         accountService.update(fromAccount);
         accountService.update(toAccount);
     }
@@ -52,21 +51,23 @@ public class TransferService {
 
         BigDecimal finalAmount;
         BigDecimal temporaryAmount;
+        BigDecimal fromCurrencyExchangeRate;
+        BigDecimal toCurrencyExchangeRate;
+        BigDecimal temporaryExchangeRate;
 
-        BigDecimal fromCurrencyExchangeRate = exchangeRateService.getCurrentExchangeRate(fromCurrency);
+        fromCurrencyExchangeRate = exchangeRateService.getCurrentExchangeRate(fromCurrency);
+        toCurrencyExchangeRate = exchangeRateService.getCurrentExchangeRate(toCurrency);
 
         temporaryAmount = originalAmount.multiply(fromCurrencyExchangeRate);
+        temporaryExchangeRate = fromCurrencyExchangeRate.multiply(temporaryAmount);
 
-        BigDecimal toCurrencyExchangeRate = exchangeRateService.getCurrentExchangeRate(toCurrency);
+        if (temporaryExchangeRate.compareTo(toCurrencyExchangeRate) > 0) {
 
-        if (temporaryAmount.compareTo(toCurrencyExchangeRate) > 0) {
-
-            finalAmount = temporaryAmount.divide(toCurrencyExchangeRate, 2, RoundingMode.HALF_UP);
+            finalAmount = temporaryAmount.divide(toCurrencyExchangeRate, 5, RoundingMode.HALF_UP);
 
         } else {
 
             finalAmount = temporaryAmount.multiply(toCurrencyExchangeRate);
-            finalAmount.setScale(2);
         }
 
         return finalAmount;

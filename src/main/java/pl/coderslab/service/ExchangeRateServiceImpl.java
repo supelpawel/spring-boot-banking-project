@@ -57,7 +57,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
                 .findFirst()
                 .get();
 
-        currentExchangeRate = currentExchangeRate.setScale(2, RoundingMode.HALF_UP);
+        currentExchangeRate = currentExchangeRate.setScale(5, RoundingMode.HALF_UP);
 
         return currentExchangeRate;
     }

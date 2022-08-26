@@ -25,7 +25,6 @@
         <th>Username</th>
         <th>Age</th>
         <th>PESEL</th>
-        <th>Enabled</th>
         <th>Role</th>
     </tr>
     <c:forEach items="${users}" var="user" varStatus="loop">
@@ -34,7 +33,6 @@
             <td>${user.username}</td>
             <td>${user.age}</td>
             <td>${user.pesel}</td>
-            <td>${user.enabled}</td>
             <td>
                 <c:forEach items="${user.roles}" var="role">
                     ${role.name}

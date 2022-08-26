@@ -20,11 +20,11 @@
 <form:form method="post" modelAttribute="user">
     <div class="flex-container">
         <span>Username: <form:input path="username"/></span><form:errors path="username" cssClass="error"/>
-        <span>Age: <form:input path="age"/></span><form:errors path="age" cssClass="error"/>
         <span>PESEL: <form:input path="pesel"/></span><form:errors path="pesel" cssClass="error"/>
         <span>Password: <form:password path="password"/></span><form:errors path="password" cssClass="error"/>
     </div>
     <input type="submit" value="Add user">
 </form:form>
+<a href="/login">Login page</a>
 </body>
 </html>

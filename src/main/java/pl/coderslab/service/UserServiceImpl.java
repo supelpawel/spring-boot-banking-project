@@ -9,6 +9,8 @@ import pl.coderslab.repository.RoleRepository;
 import pl.coderslab.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -25,18 +27,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUserName(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    @Override
-    @Transactional
-    public void save(User user) {
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
-        Role userRole = roleRepository.findByName("ROLE_USER");
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-
-        userRepository.save(user);
     }
 
     @Override
@@ -57,6 +47,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void saveUser(User user) {
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setAge(calculateAgeFromPesel(user.getPesel()));
+        user.setEnabled(true);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
     public void saveAdmin(User user) {
 
         user.setUsername("admin1");
@@ -70,4 +73,24 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
     }
+
+    @Override
+    public int calculateAgeFromPesel(String pesel) {
+
+        int userAge;
+
+        String tempYear = (pesel.substring(0, 2));
+        String year = tempYear.charAt(0) == '0' || tempYear.charAt(0) == '1' || tempYear.charAt(0) == '2' ? 20 + tempYear : 19 + tempYear;
+
+        int month = Integer.parseInt(pesel.substring(2, 4));
+        int day = Integer.parseInt(pesel.substring(4, 6));
+
+        LocalDate ld = LocalDate.now();
+        LocalDate birthDate = LocalDate.of(Integer.parseInt(year), month, day);
+
+        userAge = (int) ChronoUnit.YEARS.between(birthDate, ld);
+
+        return userAge;
+    }
 }
+

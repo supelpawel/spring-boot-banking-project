@@ -23,5 +23,8 @@
     </div>
     <input type="submit" value="Make deposit">
 </form:form>
+<p>
+    <a href="/account/list">Account list</a>
+</p>
 </body>
 </html>

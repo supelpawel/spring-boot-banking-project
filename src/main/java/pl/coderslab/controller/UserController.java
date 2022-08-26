@@ -31,15 +31,6 @@ public class UserController {
         return roleService.findAll();
     }
 
-    @GetMapping("/user/add")
-    String showAddUserForm(Model model) {
-
-        User user = new User();
-        model.addAttribute("user", user);
-
-        return "user/add";
-    }
-
     @GetMapping("/create-admin")
     public String createAdmin() {
 
@@ -52,16 +43,25 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/user/add")
+    String showAddUserForm(Model model) {
+
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "user/add";
+    }
+
     @PostMapping("/user/add")
     String processAddUserForm(@Valid User user, BindingResult result) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || userService.calculateAgeFromPesel(user.getPesel()) < 18 ) {
             return "user/add";
         }
 
-        userService.save(user);
+        userService.saveUser(user);
 
-        return "redirect:/user/list";
+        return "redirect:/login";
     }
 
     @GetMapping("/user/list")
@@ -89,7 +89,7 @@ public class UserController {
             return "user/edit";
         }
 
-        userService.save(user);
+        userService.saveUser(user);
 
         return "redirect:/user/list";
     }

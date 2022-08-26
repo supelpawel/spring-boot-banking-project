@@ -20,10 +20,13 @@
 <form:form method="post" modelAttribute="account">
     <div class="flex-container">
         <span>Set initial balance: <form:input path="balance"/></span><form:errors path="balance" cssClass="error"/>
-        <span>Choose currency: <form:select path="currency" items="${currencyList}"/></span><form:errors path="currency"
-                                                                                                         cssClass="error"/>
+        <span>Choose currency: <form:select path="currency" items="${currencyList}"/></span>
+        <form:errors path="currency" cssClass="error"/>
     </div>
     <input type="submit" value="Add account">
 </form:form>
+<p>
+    <a href="/account/list">Account list</a>
+</p>
 </body>
 </html>
