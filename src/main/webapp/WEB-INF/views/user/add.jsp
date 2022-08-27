@@ -25,6 +25,8 @@
     </div>
     <input type="submit" value="Add user">
 </form:form>
-<a href="/login">Login page</a>
+<p>
+    <a href="/login">Login page</a>
+</p>
 </body>
 </html>

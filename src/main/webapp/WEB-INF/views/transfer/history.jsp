@@ -46,7 +46,6 @@
 <p>
     <a href="/user/list">User list</a>
 </p>
-
 <p>
     <a href="/account/list">Account list</a>
 </p>

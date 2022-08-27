@@ -4,11 +4,9 @@
     <title>Login page</title>
 </head>
 <body>
-
 <p>
-<h1>You do not have the access to this page.</h1>
+You do not have the access to this page.
 </p>
-
 <p>
     <a href="/account/list">Account list</a>
 </p>

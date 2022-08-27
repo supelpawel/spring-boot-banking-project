@@ -16,10 +16,10 @@
 <form:form method="post" modelAttribute="user">
     <div class="flex-container">
         <span>Username: <form:input path="username"/></span><form:errors path="username" cssClass="error"/>
-        <span>PESEL: <form:input path="pesel"/></span><form:errors path="pesel" cssClass="error"/>
         <span>Password: <form:password path="password"/></span><form:errors path="password" cssClass="error"/>
     </div>
     <form:hidden path="id"/>
+    <form:hidden path="pesel"/></span>
     <input type="submit" value="Save changes">
 </form:form>
 <p>
