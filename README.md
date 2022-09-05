@@ -4,7 +4,7 @@ The program allows to manage bank accounts, including making deposits and transf
 Current exchange rates are downloaded from the endpoint of the bank.
 	
 ## Technologies
-Project is created with:
+The project is created with:
 * Java 18
 * Maven
 * Spring Boot
