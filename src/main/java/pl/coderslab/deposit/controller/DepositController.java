@@ -7,10 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 import pl.coderslab.account.service.AccountService;
 import pl.coderslab.deposit.service.DepositService;
-import pl.coderslab.deposit.data.Deposit;
+import pl.coderslab.deposit.model.Deposit;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;

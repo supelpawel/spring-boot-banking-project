@@ -3,9 +3,9 @@ package pl.coderslab.user.service;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.role.data.Role;
+import pl.coderslab.role.model.Role;
 import pl.coderslab.role.repository.RoleRepository;
-import pl.coderslab.user.data.User;
+import pl.coderslab.user.model.User;
 import pl.coderslab.user.repository.UserRepository;
 
 import javax.transaction.Transactional;

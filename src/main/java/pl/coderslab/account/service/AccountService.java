@@ -2,7 +2,7 @@ package pl.coderslab.account.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 import pl.coderslab.account.repository.AccountRepository;
 
 import javax.transaction.Transactional;

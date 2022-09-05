@@ -1,10 +1,10 @@
-package pl.coderslab.account.data;
+package pl.coderslab.account.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.coderslab.deposit.data.Deposit;
-import pl.coderslab.user.data.User;
+import pl.coderslab.deposit.model.Deposit;
+import pl.coderslab.user.model.User;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

@@ -1,4 +1,4 @@
-package pl.coderslab.role.data;
+package pl.coderslab.role.model;
 
 import lombok.Data;
 

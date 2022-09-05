@@ -1,6 +1,6 @@
 package pl.coderslab.user.service;
 
-import pl.coderslab.user.data.User;
+import pl.coderslab.user.model.User;
 
 import java.util.List;
 import java.util.Optional;

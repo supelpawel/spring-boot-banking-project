@@ -2,10 +2,10 @@ package pl.coderslab.transfer.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 import pl.coderslab.account.service.AccountService;
 import pl.coderslab.exchange.service.ExchangeRateService;
-import pl.coderslab.transfer.data.Transfer;
+import pl.coderslab.transfer.model.Transfer;
 import pl.coderslab.transfer.repository.TransferRepository;
 
 import javax.transaction.Transactional;

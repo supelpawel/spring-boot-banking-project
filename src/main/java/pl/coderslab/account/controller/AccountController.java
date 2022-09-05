@@ -8,10 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 import pl.coderslab.account.service.AccountService;
-import pl.coderslab.user.data.User;
-import pl.coderslab.user.data.CurrentUser;
+import pl.coderslab.user.model.User;
+import pl.coderslab.user.model.CurrentUser;
 import pl.coderslab.exchange.service.ExchangeRateService;
 import pl.coderslab.user.service.UserService;
 

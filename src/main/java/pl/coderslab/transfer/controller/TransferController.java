@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 import pl.coderslab.transfer.service.TransferService;
-import pl.coderslab.transfer.data.Transfer;
-import pl.coderslab.user.data.User;
-import pl.coderslab.user.data.CurrentUser;
+import pl.coderslab.transfer.model.Transfer;
+import pl.coderslab.user.model.User;
+import pl.coderslab.user.model.CurrentUser;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;

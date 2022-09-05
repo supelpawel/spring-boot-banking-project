@@ -1,9 +1,9 @@
-package pl.coderslab.deposit.data;
+package pl.coderslab.deposit.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,7 +1,7 @@
 package pl.coderslab.account.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 
 import java.util.List;
 

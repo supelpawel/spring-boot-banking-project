@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.role.data.Role;
+import pl.coderslab.role.model.Role;
 import pl.coderslab.role.service.RoleService;
 import pl.coderslab.user.service.UserService;
-import pl.coderslab.user.data.User;
+import pl.coderslab.user.model.User;
 
 import javax.validation.Valid;
 import java.util.Collection;

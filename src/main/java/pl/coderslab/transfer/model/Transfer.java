@@ -1,9 +1,9 @@
-package pl.coderslab.transfer.data;
+package pl.coderslab.transfer.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.coderslab.account.data.Account;
+import pl.coderslab.account.model.Account;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

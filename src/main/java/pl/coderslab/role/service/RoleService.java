@@ -2,7 +2,7 @@ package pl.coderslab.role.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.role.data.Role;
+import pl.coderslab.role.model.Role;
 import pl.coderslab.role.repository.RoleRepository;
 
 import java.util.Collection;

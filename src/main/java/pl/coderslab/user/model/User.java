@@ -1,11 +1,11 @@
-package pl.coderslab.user.data;
+package pl.coderslab.user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.pl.PESEL;
-import pl.coderslab.account.data.Account;
-import pl.coderslab.role.data.Role;
+import pl.coderslab.account.model.Account;
+import pl.coderslab.role.model.Role;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
