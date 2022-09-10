@@ -1,23 +1,32 @@
 package pl.coderslab.user.service;
 
-import pl.coderslab.user.model.User;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import pl.coderslab.user.model.User;
 
 public interface UserService {
 
-    User findByUserName(String username);
+  User findByUserName(String username);
 
-    void saveUser(User user);
+  String showAddUserForm(Model model);
 
-    void saveAdmin(User user);
+  String processAddUserForm(User user, BindingResult result);
 
-    Optional<User> findById(Long id);
+  String showEditUserForm(long id, Model model);
 
-    List<User> findAll();
+  String processEditUserForm(User user, BindingResult result);
 
-    void update(User user);
+  String createAdmin();
 
-    int calculateAgeFromPesel(String pesel);
+  String showUserList(Model model);
+
+  Optional<User> findById(Long id);
+
+  List<User> findAll();
+
+  void update(User user);
+
+  int calculateAgeFromPesel(String pesel);
 }

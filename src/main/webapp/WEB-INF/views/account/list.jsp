@@ -39,7 +39,7 @@
     <a href="/account/add">Add a new account</a>
 </p>
 <p>
-    <a href="/transfer/make">Make a new transfer</a>
+    <a href="/transfer/make">Make a transfer</a>
 </p>
 <sec:authorize access="hasRole('ADMIN')">
     <p>

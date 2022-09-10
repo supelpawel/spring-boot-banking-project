@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("/login")
-    String login() {
-        return "auth/login";
-    }
+  @GetMapping("/login")
+  String login() {
+    return "auth/login";
+  }
 
-    @GetMapping("/403")
-    String showAccessDeniedPage() {
-        return "auth/403";
-    }
+  @GetMapping("/403")
+  String showAccessDeniedPage() {
+    return "auth/403";
+  }
 }

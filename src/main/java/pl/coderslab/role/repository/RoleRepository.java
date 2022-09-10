@@ -5,5 +5,5 @@ import pl.coderslab.role.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Role findByName(String name);
+  Role findByName(String name);
 }

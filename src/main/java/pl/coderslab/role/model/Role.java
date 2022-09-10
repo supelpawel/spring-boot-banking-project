@@ -14,10 +14,9 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotNull
+  private String name;
 }

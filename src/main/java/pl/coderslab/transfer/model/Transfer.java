@@ -23,23 +23,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Transfer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @ManyToOne
-    private Account fromAccount;
-
-    @NotNull
-    @ManyToOne
-    private Account toAccount;
-
-    @NotNull
-    @Min(1)
-    private BigDecimal originalAmount;
-
-    private BigDecimal finalAmount;
-
-    private LocalDateTime transferDate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotNull
+  @ManyToOne
+  private Account fromAccount;
+  @NotNull
+  @ManyToOne
+  private Account toAccount;
+  @NotNull
+  @Min(1)
+  private BigDecimal originalAmount;
+  private BigDecimal finalAmount;
+  private LocalDateTime transferDate;
 }

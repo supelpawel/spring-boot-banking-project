@@ -27,31 +27,26 @@ import java.util.List;
 @AllArgsConstructor
 public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String accountNumber;
+  @NotNull
+  private String currency;
+  @NotNull
+  @Min(0)
+  private BigDecimal balance;
+  @ManyToOne
+  private User user;
+  @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+  private List<Deposit> deposits = new ArrayList<>();
 
-    private String accountNumber;
-
-    @NotNull
-    private String currency;
-
-    @NotNull
-    @Min(0)
-    private BigDecimal balance;
-
-    @ManyToOne
-    private User user;
-
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Deposit> deposits = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountNumber='" + accountNumber + '\'' +
-                ", currency='" + currency + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Account{" +
+        "accountNumber='" + accountNumber + '\'' +
+        ", currency='" + currency + '\'' +
+        ", balance=" + balance +
+        '}';
+  }
 }

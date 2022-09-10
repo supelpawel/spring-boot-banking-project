@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ExchangeRateService {
 
-    List<String> getCurrencies();
+  List<String> getCurrencies();
 
-    BigDecimal getCurrentExchangeRate(String currency);
+  BigDecimal getCurrentExchangeRate(String currency);
 }

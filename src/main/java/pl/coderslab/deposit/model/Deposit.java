@@ -23,16 +23,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Deposit {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @Min(1)
-    private BigDecimal amount;
-
-    private LocalDateTime depositDate;
-
-    @ManyToOne
-    private Account account;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotNull
+  @Min(1)
+  private BigDecimal amount;
+  private LocalDateTime depositDate;
+  @ManyToOne
+  private Account account;
 }

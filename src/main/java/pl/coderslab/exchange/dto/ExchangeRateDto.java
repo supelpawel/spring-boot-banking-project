@@ -8,10 +8,8 @@ import java.math.BigDecimal;
 @Data
 public class ExchangeRateDto {
 
-    private String currency;
-
-    private String code;
-
-    @JsonProperty("mid")
-    private BigDecimal currentExchangeRate;
+  private String currency;
+  private String code;
+  @JsonProperty("mid")
+  private BigDecimal currentExchangeRate;
 }

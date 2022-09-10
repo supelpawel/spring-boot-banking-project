@@ -31,41 +31,34 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotNull
+  @Size(min = 4)
+  private String username;
+  @NotNull
+  private int age;
+  @NotNull
+  @Size(min = 4)
+  private String password;
+  @NotNull
+  @PESEL
+  private String pesel;
+  private boolean enabled;
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+  private List<Account> accounts = new ArrayList<>();
+  @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles;
 
-    @NotNull
-    @Size(min = 4)
-    private String username;
-
-    @NotNull
-    private int age;
-
-    @NotNull
-    @Size(min = 4)
-    private String password;
-
-    @NotNull
-    @PESEL
-    private String pesel;
-
-    private boolean enabled;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Account> accounts = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", age=" + age +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "User{" +
+        "username='" + username + '\'' +
+        ", age=" + age +
+        '}';
+  }
 }
 
