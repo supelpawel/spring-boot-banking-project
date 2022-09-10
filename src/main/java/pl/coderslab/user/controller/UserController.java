@@ -18,7 +18,6 @@ import pl.coderslab.user.service.UserService;
 
 @Controller
 @AllArgsConstructor
-@Slf4j
 public class UserController {
 
   private final UserService userService;
