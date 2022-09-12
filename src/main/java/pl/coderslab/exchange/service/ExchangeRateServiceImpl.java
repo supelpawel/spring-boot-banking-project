@@ -24,10 +24,10 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
   public List<String> getCurrencies() {
     List<String> currencies;
     RestTemplate restTemplate = new RestTemplate();
-
     ResponseEntity<ExchangeRateDtoTable[]> forEntity = restTemplate.getForEntity(NBP_API_TABLE,
         ExchangeRateDtoTable[].class);
     ExchangeRateDtoTable[] body = forEntity.getBody();
+
     currencies = Arrays.stream(Objects.requireNonNull(body))
         .map(ExchangeRateDtoTable::getExchangeRateDtoList)
         .flatMap(Collection::stream)
@@ -41,10 +41,10 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
   public BigDecimal getCurrentExchangeRate(String currency) {
     BigDecimal currentExchangeRate;
     RestTemplate restTemplate = new RestTemplate();
-
     ResponseEntity<ExchangeRateDtoTable[]> forEntity = restTemplate.getForEntity(NBP_API_TABLE,
         ExchangeRateDtoTable[].class);
     ExchangeRateDtoTable[] body = forEntity.getBody();
+
     currentExchangeRate = Arrays.stream(Objects.requireNonNull(body))
         .map(ExchangeRateDtoTable::getExchangeRateDtoList)
         .flatMap(Collection::stream)
@@ -52,6 +52,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
         .map(ExchangeRateDto::getCurrentExchangeRate)
         .findFirst()
         .get();
+
     currentExchangeRate = currentExchangeRate.setScale(SCALE, RoundingMode.HALF_UP);
     return currentExchangeRate;
   }
