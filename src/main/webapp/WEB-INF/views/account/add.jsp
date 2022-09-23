@@ -5,21 +5,22 @@
     <title>Add a new account</title>
 
     <style>
-        .flex-container {
-            display: flex;
-            flex-direction: column;
-        }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+      }
 
-        .error {
-            color: red;
-        }
+      .error {
+        color: red;
+      }
     </style>
 </head>
 <body>
 <h1>Add a new account</h1>
 <form:form method="post" modelAttribute="account">
     <div class="flex-container">
-        <span>Set initial balance: <form:input path="balance"/></span><form:errors path="balance" cssClass="error"/>
+        <span>Set initial balance: <form:input path="balance"/></span><form:errors path="balance"
+                                                                                   cssClass="error"/>
         <span>Choose currency: <form:select path="currency" items="${currencyList}"/></span>
         <form:errors path="currency" cssClass="error"/>
     </div>

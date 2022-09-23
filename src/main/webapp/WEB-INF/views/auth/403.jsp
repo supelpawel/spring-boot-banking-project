@@ -5,7 +5,7 @@
 </head>
 <body>
 <p>
-You do not have the access to this page.
+    You do not have the access to this page.
 </p>
 <p>
     <a href="/account/list">Account list</a>
