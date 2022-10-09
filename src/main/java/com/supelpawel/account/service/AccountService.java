@@ -1,9 +1,12 @@
 package com.supelpawel.account.service;
 
+import com.supelpawel.account.dto.AccountDto;
 import com.supelpawel.account.model.Account;
+import com.supelpawel.account.repository.AccountRepository;
 import com.supelpawel.exchange.service.ExchangeRateService;
 import com.supelpawel.user.model.CurrentUser;
 import com.supelpawel.user.model.User;
+import com.supelpawel.user.service.UserService;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -12,8 +15,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import com.supelpawel.account.repository.AccountRepository;
-import com.supelpawel.user.service.UserService;
 
 @Service
 @AllArgsConstructor
@@ -47,10 +48,6 @@ public class AccountService {
     return accountRepository.findByUserId(id);
   }
 
-  public List<Account> findAll() {
-    return accountRepository.findAll();
-  }
-
   public String showAddAccountForm(Model model) {
     Account account = new Account();
 
@@ -77,9 +74,11 @@ public class AccountService {
 
   public String showAccountList(Model model, CurrentUser currentUser) {
     User user = currentUser.getUser();
-    List<Account> accounts = findByUserId(user.getId());
+    List<Account> accountList = findByUserId(user.getId());
+    List<AccountDto> accountDtoList = accountList.stream()
+        .map(AccountDto::from).toList();
 
-    model.addAttribute("accounts", accounts);
+    model.addAttribute("accounts", accountDtoList);
     return "account/list";
   }
 
@@ -92,4 +91,3 @@ public class AccountService {
     accountRepository.save(account);
   }
 }
-

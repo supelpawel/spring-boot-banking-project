@@ -1,38 +1,29 @@
-package com.supelpawel.user.model;
+package com.supelpawel.user.dto;
 
 import com.supelpawel.account.model.Account;
 import com.supelpawel.role.model.Role;
+import com.supelpawel.user.model.User;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.pl.PESEL;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-@Entity
-@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDto {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @NotNull
   @Size(min = 4)
@@ -53,9 +44,23 @@ public class User {
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
 
+  public static UserDto from(User user) {
+    UserDto userDto = new UserDto();
+
+    userDto.setId(user.getId());
+    userDto.setUsername(user.getUsername());
+    userDto.setAge(user.getAge());
+    userDto.setPassword(user.getPassword());
+    userDto.setPesel(user.getPesel());
+    userDto.setEnabled(user.isEnabled());
+    userDto.setAccounts(user.getAccounts());
+    userDto.setRoles(user.getRoles());
+    return userDto;
+  }
+
   @Override
   public String toString() {
-    return "User{" +
+    return "UserDto{" +
         "username='" + username + '\'' +
         ", age=" + age +
         '}';

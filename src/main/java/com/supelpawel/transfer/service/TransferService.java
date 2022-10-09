@@ -1,8 +1,13 @@
 package com.supelpawel.transfer.service;
 
+import com.supelpawel.account.model.Account;
+import com.supelpawel.account.service.AccountService;
 import com.supelpawel.exchange.service.ExchangeRateService;
+import com.supelpawel.transfer.dto.TransferDto;
 import com.supelpawel.transfer.model.Transfer;
 import com.supelpawel.transfer.repository.TransferRepository;
+import com.supelpawel.user.model.CurrentUser;
+import com.supelpawel.user.model.User;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
@@ -13,10 +18,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import com.supelpawel.account.model.Account;
-import com.supelpawel.account.service.AccountService;
-import com.supelpawel.user.model.CurrentUser;
-import com.supelpawel.user.model.User;
 
 @Service
 @AllArgsConstructor
@@ -30,10 +31,10 @@ public class TransferService {
   public String showMakeTransferForm(Model model, CurrentUser currentUser) {
     Transfer transfer = new Transfer();
     User user = currentUser.getUser();
-    List<Account> accounts = user.getAccounts();
+    List<Account> accountList = user.getAccounts();
 
     model.addAttribute("transfer", transfer);
-    model.addAttribute("accounts", accounts);
+    model.addAttribute("accounts", accountList);
     return "transfer/make";
   }
 
@@ -42,9 +43,9 @@ public class TransferService {
       BindingResult result) {
     if (result.hasErrors()) {
       User user = currentUser.getUser();
-      List<Account> accounts = user.getAccounts();
+      List<Account> accountList = user.getAccounts();
 
-      model.addAttribute("accounts", accounts);
+      model.addAttribute("accounts", accountList);
       return "transfer/make";
     }
     BigDecimal transferOriginalAmount = transfer.getOriginalAmount();
@@ -72,9 +73,11 @@ public class TransferService {
   }
 
   public String showTransferHistory(Model model) {
-    List<Transfer> transfers = findAll();
+    List<Transfer> transferList = findAll();
+    List<TransferDto> transferDtoList = transferList.stream()
+        .map(TransferDto::from).toList();
 
-    model.addAttribute("transfers", transfers);
+    model.addAttribute("transfers", transferDtoList);
     return "transfer/history";
   }
 

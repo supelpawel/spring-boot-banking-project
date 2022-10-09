@@ -1,34 +1,25 @@
-package com.supelpawel.account.model;
+package com.supelpawel.account.dto;
 
+import com.supelpawel.account.model.Account;
 import com.supelpawel.deposit.model.Deposit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import com.supelpawel.user.model.User;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "accounts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class AccountDto {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String accountNumber;
   @NotNull
@@ -41,9 +32,21 @@ public class Account {
   @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
   private List<Deposit> deposits = new ArrayList<>();
 
+  public static AccountDto from(Account account) {
+    AccountDto accountDto = new AccountDto();
+
+    accountDto.setId(account.getId());
+    accountDto.setAccountNumber(account.getAccountNumber());
+    accountDto.setCurrency(account.getCurrency());
+    accountDto.setBalance(account.getBalance());
+    accountDto.setUser(account.getUser());
+    accountDto.setDeposits(account.getDeposits());
+    return accountDto;
+  }
+
   @Override
   public String toString() {
-    return "Account{" +
+    return "AccountDto{" +
         "id=" + id +
         ", accountNumber='" + accountNumber + '\'' +
         ", currency='" + currency + '\'' +

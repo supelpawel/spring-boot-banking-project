@@ -1,7 +1,7 @@
 package com.supelpawel.exchange.service;
 
-import com.supelpawel.exchange.dto.ExchangeRateDto;
-import com.supelpawel.exchange.dto.ExchangeRateDtoTable;
+import com.supelpawel.exchange.dto.ExchangeRateResponseDto;
+import com.supelpawel.exchange.dto.ExchangeRateResponseDtoTable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
@@ -24,14 +24,15 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
   public List<String> getCurrencies() {
     List<String> currencies;
     RestTemplate restTemplate = new RestTemplate();
-    ResponseEntity<ExchangeRateDtoTable[]> forEntity = restTemplate.getForEntity(NBP_API_TABLE,
-        ExchangeRateDtoTable[].class);
-    ExchangeRateDtoTable[] body = forEntity.getBody();
+    ResponseEntity<ExchangeRateResponseDtoTable[]> forEntity = restTemplate.getForEntity(
+        NBP_API_TABLE,
+        ExchangeRateResponseDtoTable[].class);
+    ExchangeRateResponseDtoTable[] body = forEntity.getBody();
 
     currencies = Arrays.stream(Objects.requireNonNull(body))
-        .map(ExchangeRateDtoTable::getExchangeRateDtoList)
+        .map(ExchangeRateResponseDtoTable::getExchangeRateDtoList)
         .flatMap(Collection::stream)
-        .map(ExchangeRateDto::getCode)
+        .map(ExchangeRateResponseDto::getCode)
         .collect(Collectors.toList());
     Collections.sort(currencies);
     return currencies;
@@ -41,15 +42,16 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
   public BigDecimal getCurrentExchangeRate(String currency) {
     BigDecimal currentExchangeRate;
     RestTemplate restTemplate = new RestTemplate();
-    ResponseEntity<ExchangeRateDtoTable[]> forEntity = restTemplate.getForEntity(NBP_API_TABLE,
-        ExchangeRateDtoTable[].class);
-    ExchangeRateDtoTable[] body = forEntity.getBody();
+    ResponseEntity<ExchangeRateResponseDtoTable[]> forEntity = restTemplate.getForEntity(
+        NBP_API_TABLE,
+        ExchangeRateResponseDtoTable[].class);
+    ExchangeRateResponseDtoTable[] body = forEntity.getBody();
 
     currentExchangeRate = Arrays.stream(Objects.requireNonNull(body))
-        .map(ExchangeRateDtoTable::getExchangeRateDtoList)
+        .map(ExchangeRateResponseDtoTable::getExchangeRateDtoList)
         .flatMap(Collection::stream)
         .filter(e -> e.getCode().equals(currency))
-        .map(ExchangeRateDto::getCurrentExchangeRate)
+        .map(ExchangeRateResponseDto::getCurrentExchangeRate)
         .findFirst()
         .get();
 
@@ -57,4 +59,3 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     return currentExchangeRate;
   }
 }
-

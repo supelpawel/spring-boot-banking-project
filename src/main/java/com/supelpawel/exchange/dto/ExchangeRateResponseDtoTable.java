@@ -9,7 +9,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class ExchangeRateDtoTable {
+public class ExchangeRateResponseDtoTable {
 
   private char table;
   @JsonProperty("no")
@@ -17,5 +17,5 @@ public class ExchangeRateDtoTable {
   @JsonProperty("effectiveDate")
   private LocalDate created;
   @JsonProperty("rates")
-  private List<ExchangeRateDto> exchangeRateDtoList;
+  private List<ExchangeRateResponseDto> exchangeRateDtoList;
 }

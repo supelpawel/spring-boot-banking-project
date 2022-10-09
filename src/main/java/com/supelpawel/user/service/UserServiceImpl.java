@@ -2,6 +2,7 @@ package com.supelpawel.user.service;
 
 import com.supelpawel.role.model.Role;
 import com.supelpawel.role.repository.RoleRepository;
+import com.supelpawel.user.dto.UserDto;
 import com.supelpawel.user.model.User;
 import com.supelpawel.user.repository.UserRepository;
 import java.time.LocalDate;
@@ -80,16 +81,11 @@ public class UserServiceImpl implements UserService {
   }
 
   public String showEditUserForm(long id, Model model) {
-    findById(id)
-        .ifPresent(u -> model.addAttribute("user", u));
+    User user = findById(id).get();
+    UserDto userDto = UserDto.from(user);
+
+    model.addAttribute("user", userDto);
     return "user/edit";
-  }
-
-  public String showUserList(Model model) {
-    List<User> users = findAll();
-
-    model.addAttribute("users", users);
-    return "user/list";
   }
 
   @Transactional
@@ -99,6 +95,15 @@ public class UserServiceImpl implements UserService {
     }
     processAddUserForm(user, result);
     return "redirect:/user/list";
+  }
+
+  public String showUserList(Model model) {
+    List<User> userList = findAll();
+    List<UserDto> userDtoList = userList.stream()
+        .map(UserDto::from).toList();
+
+    model.addAttribute("users", userDtoList);
+    return "user/list";
   }
 
   @Override
@@ -141,4 +146,3 @@ public class UserServiceImpl implements UserService {
     return userAge;
   }
 }
-

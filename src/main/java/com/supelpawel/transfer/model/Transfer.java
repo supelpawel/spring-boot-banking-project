@@ -37,4 +37,14 @@ public class Transfer {
   private BigDecimal originalAmount;
   private BigDecimal finalAmount;
   private LocalDateTime transferDate;
+
+  @Override
+  public String toString() {
+    return "Transfer{" +
+        "id=" + id +
+        ", originalAmount=" + originalAmount +
+        ", finalAmount=" + finalAmount +
+        ", transferDate=" + transferDate +
+        '}';
+  }
 }
